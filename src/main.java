@@ -1,24 +1,39 @@
+import Dijkstra.Dijkstra;
+import Dijkstra.Elementos.Grafo;
+import Elementos.Aresta;
+import Elementos.Vertice;
 import ListaAdj.ListaAdj;
-import MatrizAdj.Elementos.Aresta;
-import MatrizAdj.Elementos.Vertice;
-import MatrizAdj.MatrizAdj;
+
+
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class main {
 
     public static void main(String args[]) {
         ListaAdj lista = new ListaAdj();
-        MatrizAdj matriz = new MatrizAdj();
+        Grafo grafo = new Grafo();
+        Dijkstra algoritmo = new Dijkstra("A", grafo);
 
-        matriz.addVertice(new Vertice(1, "A"));
-        matriz.addVertice(new Vertice(2, "B"));
-        matriz.addVertice(new Vertice(3, "C"));
+        lista.addVertice(new Vertice(1, "A"));
+        lista.addVertice(new Vertice(2, "B"));
+        lista.addVertice(new Vertice(3, "C"));
 
-        matriz.addAresta(new Aresta(1, "Oliveria paiva"), "A", "B");
-        matriz.addAresta(new Aresta(2, "Desembargador Gonzaga"), "A", "C");
+        lista.addAresta(new Aresta(1, "Oliveira Paiva"),"A", "B");
+        lista.addAresta(new Aresta(2, "Desembargador"),"A", "C");
 
-        matriz.removerAresta("A", "B");
+        lista.getLista().get(0).get(1).getAresta().setCongestionamento(2);
+        lista.getLista().get(0).get(2).getAresta().setCongestionamento(4);
 
-        matriz.imprimirMatriz();
+        grafo.updateGrafo(lista);
+
+        lista.printLista();
+
+        System.out.println("");
+
+        grafo.imprimirGrafo();
+
+        System.out.println(algoritmo.menorCaminho("A"));
     }
 
 }

@@ -1,8 +1,8 @@
 package MatrizAdj;
 
-import MatrizAdj.Elementos.Aresta;
+import Elementos.Aresta;
+import Elementos.Vertice;
 import MatrizAdj.Elementos.ArestaStatus;
-import MatrizAdj.Elementos.Vertice;
 
 import java.util.ArrayList;
 import java.util.List;

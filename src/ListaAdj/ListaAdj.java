@@ -1,7 +1,7 @@
 package ListaAdj;
 
-import ListaAdj.Elementos.Aresta;
-import ListaAdj.Elementos.Vertice;
+import Elementos.Aresta;
+import Elementos.Vertice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +66,7 @@ public class ListaAdj {
                     for (int j = 0; j < lista.size(); j++) {
                         if(lista.get(j).get(0).getNome().equalsIgnoreCase(destino)) {
                             lista.get(i).add(lista.get(j).get(0));
-                            lista.get(i).get(0).setAresta(aresta);
+                            lista.get(i).get(j).setAresta(aresta);
                         }
                     }
                 }

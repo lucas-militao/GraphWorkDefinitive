@@ -1,5 +1,7 @@
 package MatrizAdj.Elementos;
 
+import Elementos.Aresta;
+
 public class ArestaStatus {
 
     private Aresta aresta;
