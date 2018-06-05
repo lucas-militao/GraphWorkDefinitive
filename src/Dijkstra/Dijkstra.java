@@ -1,62 +1,42 @@
 package Dijkstra;
 
-import Dijkstra.Elementos.Grafo;
-import Dijkstra.Elementos.VerticeStatus;
 import Elementos.Vertice;
 import ListaAdj.ListaAdj;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Dijkstra {
 
-    private Grafo grafo;
-    private String inicio;
+    private List<ArrayList<Vertice>> grafo;
 
-    public Dijkstra (String inicio, Grafo grafo) {
-        this.grafo = grafo;
-        this.inicio = inicio;
-    }
-
-    public Grafo getGrafo() {
-        return grafo;
-    }
-
-    public void setGrafo(Grafo grafo) {
+    public Dijkstra(List<ArrayList<Vertice>> grafo) {
         this.grafo = grafo;
     }
 
-    public String getInicio() {
-        return inicio;
-    }
-
-    public void setInicio(String inicio) {
-        this.inicio = inicio;
-    }
-
-    public int menorCaminho (String v) {
-        if (!grafo.getGrafo().isEmpty()) {
-
-            for (int i = 0; i < grafo.getGrafo().size(); i++) {
-                Vertice indice = grafo.getGrafo().get(i).get(0).getVertice();
-                if(indice.getNome().equalsIgnoreCase(v)) {
-                    if(v == inicio) {
-                        grafo.getGrafo().get(i).get(0).setPeso(0);
-                        grafo.getGrafo().get(i).get(0).setVisitado(true);
-                        int menor = 0;
-                        for (int j = 1; j < grafo.getGrafo().get(i).size(); j++) {
-                            if(menor > grafo.getGrafo().get(i).get(j).getVertice().getAresta().getCongestionamento()) {
-                                menor = grafo.getGrafo().get(i).get(j).getVertice().getAresta().getCongestionamento();
-                                grafo.getGrafo().get(i).get(j).setVisitado(true);
-                                grafo.getGrafo().get(i).get(j).setPeso(menor);
+    public int MenorCaminho (String v, int dist) { //função que retorna o menor caminho
+        for (int i = 0; i < grafo.size(); i++) {
+            if (grafo.get(i).get(0).getAresta() == null && grafo.get(i).get(0).getNome() == v) {
+                if(grafo.get(i).size() > 1) {
+                    int menor = dist;
+                    for (int j = 1; j < grafo.get(i).size(); j++) {
+                        if(dist == 0){
+                            dist += grafo.get(i).get(j).getAresta().getCongestionamento();
+                            continue;
+                        } else {
+                            if (dist > grafo.get(i).get(j).getAresta().getCongestionamento() + menor) {
+                                dist = grafo.get(i).get(j).getAresta().getCongestionamento() + menor;
                             }
                         }
-                        return menor;
                     }
+                    return dist;
                 }
             }
         }
+        return dist;
+    }
 
+    public void CaminhoMinimo () { //função que deve retorna o caminho mínimo
 
-        return 0;
     }
 }
